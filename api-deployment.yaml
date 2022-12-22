@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ynovapi-deployment
+  labels:
+    app: ynovapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ynovapi
+  template:
+    metadata:
+      labels:
+        app: ynovapi
+    spec:
+      containers:
+      - name: ynovapi
+        image: yrez/ynov-api:latest
+        env:
+          - name: MONGODB_URI
+            valueFrom:
+
+               name: mongodb-uri
+               key: mongodb-uri
+        ports:
+        - containerPort: 3000
+      
+        
